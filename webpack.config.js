@@ -23,9 +23,9 @@ const config = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'assets': resolve('src/assets'),
-      'image': resolve('src/assets/img'),
+      'api': resolve('src/api'),
       'service':  resolve('src/service'),
-      'utils':  resolve('src/assets/js')
+      'components':  resolve('src/components')
     }
   },
   module: {
@@ -51,8 +51,12 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options:{
+              publicPath: '../'
+            }
+          },
           'css-loader',
         ]
       },
@@ -61,7 +65,12 @@ const config = {
         test: /\.styl(us)?$/,
         use: [
           'style-loader',
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options:{
+              publicPath: '../'
+            }
+          },
           'css-loader',
           'stylus-loader'
         ],
@@ -74,7 +83,8 @@ const config = {
           loader: 'url-loader',
           options: {
             limit: 1024,
-            name: 'resources/[name].[ext]'
+            name: '[name].[hash:5].[ext]',
+            outputPath: 'img'
           }
         }]
       },
