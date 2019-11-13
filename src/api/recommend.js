@@ -10,3 +10,18 @@ export function getRecommend(){
   
   return jsonp(url, data, options)
 }
+
+export function getDiscList(){
+  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_yqqhomepagerecommend.fcg';
+  const data = Object.assign({}, commonParams, {
+    platform: 'qq',
+    hostUin: 0,
+    sin: 0,
+    ein: 29,
+    sortId: 5,
+    needNewCode: 0,
+    categoryId: 10000000,
+    rnd: Math.random()
+  })
+  return jsonp(url, data, options)
+}
